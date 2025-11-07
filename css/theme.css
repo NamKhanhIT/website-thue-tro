@@ -1,0 +1,206 @@
+/* New warm theme for student rental */
+:root {
+  --primary: #FF7043;  /* Warm orange */
+  --secondary: #FFB74D; /* Light orange */
+  --primary: #ff5722;
+  --primary-light: #ff8a50;
+  --primary-dark: #c41c00;
+  --accent: #ffc107;
+  --accent-light: #fff350;
+  --accent-dark: #ff8f00;
+  --text-primary: #2d2926;
+  --text-secondary: #757575;
+  --background: #fff3e0;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+.ftco_navbar .navbar-brand {
+  color: #fff !important;
+  font-weight: 800;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+}
+.ftco_navbar .nav-link {
+  color: #fff !important;
+  opacity: 0.9;
+  font-weight: 500;
+  position: relative;
+}
+.ftco_navbar .nav-link:hover {
+  opacity: 1;
+}
+.ftco_navbar .nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: #fff;
+  transition: width 0.2s ease;
+}
+.ftco_navbar .nav-link:hover::after {
+  width: 80%;
+}
+
+/* Hero section */
+.hero-wrap {
+  background-blend-mode: overlay;
+}
+.hero-wrap::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(255,87,34,0.9), rgba(255,152,0,0.85));
+}
+.hero-wrap h1 {
+  font-weight: 800;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+.hero-wrap .btn-primary {
+  background: var(--accent);
+  border: none;
+  box-shadow: 0 4px 15px rgba(255,87,34,0.3);
+}
+.hero-wrap .btn-white {
+  background: #fff;
+  color: var(--text-dark);
+}
+
+/* Quick search form */
+.ftco-book {
+  margin-top: -50px;
+  position: relative;
+  z-index: 1;
+}
+.appointment-form {
+  background: #fff;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+}
+.appointment-form h3 {
+  color: var(--text-dark);
+  font-weight: 700;
+}
+.form-control {
+  border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+.form-control:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(255,112,67,0.1);
+}
+
+/* Services cards */
+.services-wrap {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+}
+.services-wrap:hover {
+  transform: translateY(-5px);
+}
+.services-wrap .img {
+  height: 200px;
+}
+.services-wrap .text {
+  padding: 25px;
+}
+.services-wrap h3 {
+  font-weight: 700;
+  color: var(--text-dark);
+  font-size: 1.2rem;
+}
+.services-wrap .btn-primary {
+  background: var(--primary);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+}
+
+/* Featured rooms */
+.room-wrap {
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 30px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+.room-wrap .img {
+  height: 300px;
+}
+.room-wrap .text {
+  padding: 25px;
+}
+.room-wrap .price {
+  color: var(--primary);
+  font-weight: 800;
+}
+.room-wrap .badge-category {
+  background: var(--secondary);
+  color: #fff;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* Testimonials */
+.testimony-wrap {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+.testimony-wrap .name {
+  color: var(--text-dark);
+  font-weight: 700;
+}
+
+/* Call to action */
+.ftco-intro {
+  position: relative;
+}
+.ftco-intro::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(255,87,34,0.95), rgba(255,152,0,0.9));
+}
+.ftco-intro h2 {
+  font-weight: 800;
+  color: #fff;
+}
+
+/* Footer */
+.footer {
+  background: #37474F;
+}
+.footer-heading {
+  color: #fff;
+  font-weight: 700;
+}
+.footer .tagcloud a {
+  background: rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.8);
+}
+.footer .btn-primary {
+  background: var(--primary);
+  border: none;
+}
+
+/* Animations */
+.ftco-animate {
+  opacity: 0;
+  visibility: hidden;
+}
+.ftco-animated {
+  opacity: 1;
+  visibility: visible;
+}
