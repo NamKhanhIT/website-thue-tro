@@ -14,12 +14,12 @@
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 .ftco_navbar .navbar-brand {
-  color: #fff !important;
+  color: #F37021 !important;
   font-weight: 800;
   text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
 }
 .ftco_navbar .nav-link {
-  color: #fff !important;
+  color: #4d4d4d !important;
   opacity: 0.9;
   font-weight: 500;
   position: relative;
@@ -65,7 +65,7 @@
   box-shadow: 0 4px 15px rgba(255,87,34,0.3);
 }
 .hero-wrap .btn-white {
-  background: #fff;
+  background: #ffc107;
   color: var(--text-dark);
 }
 

@@ -10513,7 +10513,7 @@ h5,
 }
 
 .wrap {
-    background: #fc456a;
+    background: #F37021;
     padding: 0;
 }
 .wrap .phone {
@@ -10570,7 +10570,7 @@ h5,
     line-height: 1;
 }
 .ftco-navbar-light .navbar-brand span {
-    color: #fd7792;
+    color: #FFC107;
     position: relative;
 }
 .ftco-navbar-light .navbar-brand:hover,
@@ -10933,8 +10933,8 @@ h5,
     outline: none;
 }
 .btn.btn-primary {
-    background: #fd7792;
-    border: 1px solid #fd7792;
+    background: #ffc107;
+    border: 1px solid #ffc107;
     color: #fff;
 }
 .btn.btn-primary:hover {
