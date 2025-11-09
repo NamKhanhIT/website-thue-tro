@@ -12406,3 +12406,33 @@ footer {
         min-height: 160px;
     }
 }
+
+
+h1.supper-animation {
+    font-size: 41px !important;
+    width: 100%;
+    text-transform: uppercase;
+    border-right: 5px solid;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: typing 6s steps(32) infinite,
+    cursor .4s step-end infinite alternate;
+}
+
+@keyframes cursor {
+    50% {
+        border-color: transparent;
+    }
+}
+
+@keyframes typing {
+    0% {
+        width: 0;
+    }
+     50% {
+        width: 100%;
+    }
+     100% {
+        width: 100%;
+    }
+}

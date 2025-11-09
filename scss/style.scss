@@ -283,8 +283,7 @@ h1, h2, h3, h4, h5,
 		right: 0;
 		bottom: 0;
 		content: '';
-		opacity: .1;
-		background: $black;
+		// background: rgba(0, 0, 0, 0.5);
 	}
 	&.hero-wrap-2{
 		height: 400px;
@@ -719,7 +718,7 @@ h1, h2, h3, h4, h5,
 				}
 			}
 		}
-		.text{;
+		.text{
 			.star{
 				span{
 					color: $white;

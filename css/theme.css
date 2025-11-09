@@ -53,7 +53,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(45deg, rgba(255,87,34,0.9), rgba(255,152,0,0.85));
+  background: rgba(0,0,0,0.1);
 }
 .hero-wrap h1 {
   font-weight: 800;
@@ -65,7 +65,7 @@
   box-shadow: 0 4px 15px rgba(255,87,34,0.3);
 }
 .hero-wrap .btn-white {
-  background: #ffc107;
+  background: transparent;
   color: var(--text-dark);
 }
 
@@ -161,18 +161,7 @@
 }
 
 /* Call to action */
-.ftco-intro {
-  position: relative;
-}
-.ftco-intro::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(45deg, rgba(255,87,34,0.95), rgba(255,152,0,0.9));
-}
+
 .ftco-intro h2 {
   font-weight: 800;
   color: #fff;
