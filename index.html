@@ -74,70 +74,71 @@
     	<div class="container">
 	    	<div class="row justify-content-end">
 	    		<div class="col-lg-4">
-						<form action="#" class="appointment-form">
-							<h3 class="mb-3">Tìm kiếm nhanh</h3>
-							<div class="row">
-								<div class="col-md-12">
-									<div class="form-group">
-			    					<input type="text" class="form-control" placeholder="Từ khóa tìm kiếm">
-			    				</div>
-								</div>
-								<div class="col-md-12">
-									<div class="form-group">
-			    					<div class="form-field">
-	          					<div class="select-wrap">
-	                      <div class="icon"><span class="fa fa-chevron-down"></span></div>
-	                      <select name="" id="" class="form-control">
-	                      	<option value="">Chọn khu vực</option>
-	                        <option value="">Quận 1</option>
-	                        <option value="">Quận 2</option>
-	                        <option value="">Quận 3</option>
-	                        <option value="">Quận Bình Thạnh</option>
-	                        <option value="">Quận Thủ Đức</option>
-	                      </select>
-	                    </div>
-			              </div>
-			    				</div>
-								</div>
-								<div class="col-md-12">
-									<div class="form-group">
-			    					<div class="form-field">
-	          					<div class="select-wrap">
-	                      <div class="icon"><span class="fa fa-chevron-down"></span></div>
-	                      <select name="" id="" class="form-control">
-	                      	<option value="">Khoảng giá</option>
-	                        <option value="">Dưới 2 triệu</option>
-	                        <option value="">2 - 3 triệu</option>
-	                        <option value="">3 - 4 triệu</option>
-	                        <option value="">Trên 4 triệu</option>
-	                      </select>
-	                    </div>
-			              </div>
-			    				</div>
-								</div>
-								<div class="col-md-12">
-									<div class="form-group">
-			    					<div class="form-field">
-	          					<div class="select-wrap">
-	                      <div class="icon"><span class="fa fa-chevron-down"></span></div>
-	                      <select name="" id="" class="form-control">
-	                      	<option value="">Loại phòng</option>
-	                        <option value="">Phòng trọ</option>
-	                        <option value="">Ký túc xá</option>
-	                        <option value="">Chung cư mini</option>
-	                        <option value="">Nhà nguyên căn</option>
-	                      </select>
-	                    </div>
-			              </div>
-			    				</div>
-								</div>
-								<div class="col-md-12">
-									<div class="form-group">
-			              <input type="submit" value="Tìm kiếm" class="btn btn-primary py-3 px-4">
-			            </div>
-								</div>
-							</div>
-	    			</form>
+												<!-- Improved search form: submits via GET to rooms.html with query params -->
+												<form action="rooms.html" method="get" class="appointment-form" role="search" aria-label="Tìm phòng">
+														<h3 class="mb-3">Tìm kiếm nhanh</h3>
+														<div class="row">
+																<div class="col-md-12">
+																		<div class="form-group">
+																				<input type="search" name="q" id="search-q" class="form-control" placeholder="Từ khóa (ví dụ: gần trường, có máy lạnh)" aria-label="Từ khóa tìm kiếm">
+																		</div>
+																</div>
+																<div class="col-md-12">
+																		<div class="form-group">
+																				<div class="form-field">
+																						<div class="select-wrap">
+																							<div class="icon"><span class="fa fa-chevron-down"></span></div>
+																							<select name="area" id="search-area" class="form-control" aria-label="Khu vực">
+																								<option value="">Chọn khu vực</option>
+																								<option value="q1">Quận 1</option>
+																								<option value="q2">Quận 2</option>
+																								<option value="q3">Quận 3</option>
+																								<option value="binh-thanh">Quận Bình Thạnh</option>
+																								<option value="thu-duc">Quận Thủ Đức</option>
+																							</select>
+																						</div>
+																			</div>
+																				</div>
+																</div>
+																<div class="col-md-12">
+																		<div class="form-group">
+																				<div class="form-field">
+																						<div class="select-wrap">
+																							<div class="icon"><span class="fa fa-chevron-down"></span></div>
+																							<select name="price" id="search-price" class="form-control" aria-label="Khoảng giá">
+																								<option value="">Khoảng giá</option>
+																								<option value="under-2">Dưới 2 triệu</option>
+																								<option value="2-3">2 - 3 triệu</option>
+																								<option value="3-4">3 - 4 triệu</option>
+																								<option value="over-4">Trên 4 triệu</option>
+																							</select>
+																						</div>
+																			</div>
+																				</div>
+																</div>
+																<div class="col-md-12">
+																		<div class="form-group">
+																				<div class="form-field">
+																						<div class="select-wrap">
+																							<div class="icon"><span class="fa fa-chevron-down"></span></div>
+																							<select name="type" id="search-type" class="form-control" aria-label="Loại phòng">
+																								<option value="">Loại phòng</option>
+																								<option value="phong-tro">Phòng trọ</option>
+																								<option value="ky-tuc-xa">Ký túc xá</option>
+																								<option value="chung-cu-mini">Chung cư mini</option>
+																								<option value="nha-nguyen-can">Nhà nguyên căn</option>
+																							</select>
+																						</div>
+																			</div>
+																				</div>
+																</div>
+																<div class="col-md-12">
+																		<div class="form-group">
+																			<input type="submit" value="Tìm kiếm" class="btn btn-primary py-3 px-4">
+																		</div>
+																</div>
+														</div>
+												</form>
 	    		</div>
 	    	</div>
 	    </div>
