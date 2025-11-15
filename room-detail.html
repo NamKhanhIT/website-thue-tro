@@ -20,6 +20,14 @@
             <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
             <li class="nav-item"><a href="rooms.html" class="nav-link">Danh sách</a></li>
             <li class="nav-item"><a href="contact.html" class="nav-link">Liên hệ</a></li>
+            <li class="nav-item"><a href="login.html" class="nav-link" id="nav-login">Đăng nhập</a></li>
+            <li class="nav-item"><a href="register.html" class="nav-link" id="nav-register">Đăng ký</a></li>
+            <li class="nav-item dropdown d-none" id="nav-user">
+              <a class="nav-link dropdown-toggle" href="#" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span id="nav-username"></span></a>
+              <div class="dropdown-menu" aria-labelledby="userMenu">
+                <a class="dropdown-item" href="#" id="nav-logout">Đăng xuất</a>
+              </div>
+            </li>
           </ul>
         </div>
       </div>
@@ -74,7 +82,8 @@
     </footer>
 
     <script src="js/jquery.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/auth.js"></script>
     <script>
       $(document).ready(function(){
         function initCarousel(){
