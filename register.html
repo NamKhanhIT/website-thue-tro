@@ -6,8 +6,105 @@
   <title>Đăng ký - ROOMY.VN</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    :root {
+      --reg-gold: #f6d365;
+      --reg-plum: #6b48ff;
+      --reg-deep: #1b1f3b;
+    }
+    body {
+      min-height: 100vh;
+      background: radial-gradient(circle at 20% 20%, rgba(246, 211, 101, 0.4), transparent 45%),
+                  radial-gradient(circle at 80% 0%, rgba(107, 72, 255, 0.35), transparent 40%),
+                  linear-gradient(135deg, #0f172a, #1e1b4b);
+      color: #0f172a;
+      position: relative;
+    }
+    .registry-pattern {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+    }
+    .registry-pattern span {
+      position: absolute;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(6px);
+      animation: drift 18s ease-in-out infinite;
+    }
+    .registry-pattern span:nth-child(1) { width: 320px; height: 320px; top: 8%; right: 10%; }
+    .registry-pattern span:nth-child(2) { width: 180px; height: 180px; bottom: 12%; left: 12%; animation-delay: -3s; }
+    .registry-pattern span:nth-child(3) { width: 240px; height: 240px; bottom: 25%; right: 25%; animation-delay: -8s; border-radius: 40% 60% 50% 70%; }
+    @keyframes drift {
+      0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+      50% { transform: translate3d(0, -15px, 0) rotate(2deg); }
+    }
+    .ftco-section {
+      position: relative;
+      z-index: 1;
+    }
+    .register-card {
+      border-radius: 28px;
+      box-shadow: 0 30px 60px rgba(15, 23, 42, 0.35);
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(16px);
+    }
+    .register-card .form-control {
+      border-radius: 12px;
+      border: 1px solid rgba(15, 23, 42, 0.12);
+      padding: 0.85rem 1rem;
+    }
+    .register-card .btn-primary {
+      border-radius: 999px;
+      padding: 0.85rem;
+      background: linear-gradient(135deg, var(--reg-gold), var(--reg-plum));
+      border: none;
+      box-shadow: 0 20px 30px rgba(107, 72, 255, 0.35);
+    }
+    .register-card h3 {
+      font-weight: 700;
+      color: #0f172a;
+    }
+    .register-tagline {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #fbbf24;
+    }
+    .register-illust {
+      position: relative;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.25);
+    }
+    .register-illust::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.2), rgba(107, 72, 255, 0.35));
+    }
+    @media (max-width: 767px) {
+      body {
+        background: linear-gradient(160deg, #0f172a, #312e81);
+      }
+      .register-card {
+        border-radius: 22px;
+      }
+    }
+  </style>
 </head>
 <body>
+  <div class="registry-pattern" aria-hidden="true">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
   <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light">
     <div class="container">
       <a class="navbar-brand" href="index.html">ROOMY<span>.VN</span></a>
@@ -21,11 +118,15 @@
           <div class="row align-items-center">
             <div class="col-md-6 d-none d-md-block">
               <!-- Illustration for register -->
-              <img src="images/bg_1.jpg" alt="Đăng ký ROOMY" class="img-fluid rounded shadow-sm">
+              <div class="register-illust">
+                <img src="images/bg_1.jpg" alt="Đăng ký ROOMY" class="img-fluid">
+              </div>
             </div>
             <div class="col-md-6">
-              <h3 class="mb-3">Đăng ký</h3>
-              <form id="register-form" class="bg-white p-4 rounded">
+              <div class="register-card p-4 p-lg-5">
+                <span class="register-tagline"><span class="fa fa-star"></span> Thành viên mới</span>
+                <h3 class="mb-3 mt-2">Đăng ký</h3>
+                <form id="register-form">
                 <div class="auth-msg"></div>
                 <div class="form-group">
                   <label for="reg-name">Tên</label>
@@ -43,11 +144,12 @@
                   <label for="reg-password2">Xác nhận mật khẩu</label>
                   <input type="password" id="reg-password2" class="form-control" required>
                 </div>
-                <div class="form-group">
+                <div class="form-group mb-4">
                   <button class="btn btn-primary btn-block" type="submit">Đăng ký</button>
                 </div>
-                <p class="text-center">Đã có tài khoản? <a href="login.html">Đăng nhập</a></p>
+                <p class="text-center mb-0">Đã có tài khoản? <a href="login.html">Đăng nhập</a></p>
               </form>
+              </div>
             </div>
           </div>
         </div>
