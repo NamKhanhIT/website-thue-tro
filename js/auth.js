@@ -34,13 +34,20 @@
     return users.find(u=>u.id===id) || null;
   }
 
-  async function registerUser(name,email,password){
+  async function registerUser(name,email,password, role, meta){
     if(!email || !password) return {success:false,message:'Email và mật khẩu là bắt buộc.'};
     var users = getUsers();
     if(users.find(u=>u.email.toLowerCase()===email.toLowerCase())) return {success:false,message:'Email đã được sử dụng.'};
     var pwHash = await hashPassword(password);
     var id = 'u'+Date.now();
-    users.push({id:id,name:name||email.split('@')[0],email:email.toLowerCase(),passwordHash:pwHash});
+    users.push({
+      id: id,
+      name: name||email.split('@')[0],
+      email: email.toLowerCase(),
+      passwordHash: pwHash,
+      role: role || 'user',
+      meta: meta || {}
+    });
     saveUsers(users);
     localStorage.setItem('sr_current', id);
     return {success:true,message:'Đăng ký thành công',userId:id};
@@ -96,8 +103,16 @@
         var pass = $('#reg-password').val();
         var pass2 = $('#reg-password2').val();
         if(pass !== pass2){ showMessage($reg, 'Mật khẩu không khớp', 'danger'); return; }
+        // collect role and optional meta fields
+        var role = $('#reg-role').val() || 'user';
+        var phone = ($('#reg-phone').length) ? $('#reg-phone').val().trim() : '';
+        var extra = ($('#reg-extra').length) ? $('#reg-extra').val().trim() : '';
+        var meta = {};
+        if(phone) meta.phone = phone;
+        if(extra) meta.extra = extra;
+
         showMessage($reg, 'Đang đăng ký...','info');
-        var res = await registerUser(name,email,pass);
+        var res = await registerUser(name,email,pass, role, meta);
         if(res.success){ showMessage($reg, res.message, 'success'); setTimeout(function(){ window.location.href = 'index.html'; },800); }
         else showMessage($reg, res.message, 'danger');
       });

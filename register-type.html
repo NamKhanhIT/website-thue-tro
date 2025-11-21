@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chọn loại đăng ký - ROOMY.VN</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .choose-box { max-width:800px; margin:80px auto; display:flex; gap:20px; }
+    .choose-card { flex:1; padding:40px; border-radius:16px; text-align:center; background:#fff; box-shadow:0 8px 30px rgba(0,0,0,0.12); }
+    .choose-card h3{ margin-bottom:16px }
+    .choose-card p{ color:#6b7280; margin-bottom:24px }
+    .choose-card .btn{ padding:12px 20px; border-radius:999px }
+    @media(max-width:767px){ .choose-box{flex-direction:column;padding:20px} }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">ROOMY<span>.VN</span></a>
+    </div>
+  </nav>
+
+  <section class="ftco-section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-10">
+          <div class="choose-box">
+            <div class="choose-card">
+              <span class="fa fa-user fa-2x"></span>
+              <h3>Người đi thuê</h3>
+              <p>Đăng ký để tìm phòng và liên hệ chủ trọ.</p>
+              <a href="register-tenant.html" class="btn btn-primary">Đăng ký người đi thuê</a>
+            </div>
+            <div class="choose-card">
+              <span class="fa fa-home fa-2x"></span>
+              <h3>Người cho thuê</h3>
+              <p>Đăng ký để đăng tin cho thuê và quản lý phòng.</p>
+              <a href="register-owner.html" class="btn btn-primary">Đăng ký người cho thuê</a>
+            </div>
+          </div>
+          <p class="text-center mt-4"><a href="register.html">Quay lại đăng ký chung</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>
