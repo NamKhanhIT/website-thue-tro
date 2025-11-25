@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Thống kê tìm trọ - ROOMY.VN</title>
+  
+  <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/theme.css">
+  
+  <style>
+    :root {
+      --stats-gold: #f6d365;
+      --stats-purple: #6b48ff;
+      --stats-blue: #4b9cdb;
+      --stats-pink: #ff6b9d;
+      --stats-green: #42f5c5;
+      --stats-orange: #fda085;
+    }
+    
+    body {
+      background: radial-gradient(circle at top, rgba(250, 247, 241, 0.85), #ffffff 45%);
+      position: relative;
+    }
+    
+    .stats-pattern {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      overflow: hidden;
+    }
+    
+    .stats-pattern::before,
+    .stats-pattern::after {
+      content: "";
+      position: absolute;
+      width: 35vw;
+      height: 35vw;
+      border-radius: 50%;
+      filter: blur(50px);
+      opacity: 0.6;
+    }
+    
+    .stats-pattern::before {
+      background: radial-gradient(circle, rgba(246, 211, 101, 0.8), transparent 70%);
+      top: -8vw;
+      left: -10vw;
+    }
+    
+    .stats-pattern::after {
+      background: radial-gradient(circle, rgba(107, 72, 255, 0.6), transparent 70%);
+      bottom: -12vw;
+      right: -10vw;
+    }
+    
+    .hero-stats {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(75, 60, 165, 0.9));
+      padding: 80px 0 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero-stats::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url('images/bg_2.jpg') center/cover;
+      opacity: 0.15;
+      z-index: 0;
+    }
+    
+    .hero-stats .container {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .hero-stats h1 {
+      color: #fff;
+      font-weight: 700;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    .hero-stats p {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 1.2rem;
+    }
+    
+    .stats-card {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 24px;
+      padding: 2.5rem;
+      box-shadow: 0 20px 60px rgba(15, 23, 42, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      height: 100%;
+    }
+    
+    .stats-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 30px 80px rgba(15, 23, 42, 0.25);
+    }
+    
+    .stats-card h3 {
+      color: #0f172a;
+      font-weight: 700;
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .stats-card h3 i {
+      color: var(--stats-purple);
+      font-size: 1.8rem;
+    }
+    
+    .chart-container {
+      position: relative;
+      height: 300px;
+      margin: 2rem 0;
+    }
+    
+    .stats-summary {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    
+    .summary-item {
+      text-align: center;
+      padding: 1.5rem;
+      background: linear-gradient(135deg, rgba(246, 211, 101, 0.1), rgba(107, 72, 255, 0.1));
+      border-radius: 16px;
+      border: 1px solid rgba(107, 72, 255, 0.2);
+    }
+    
+    .summary-item .number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--stats-gold), var(--stats-purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+    
+    .summary-item .label {
+      color: #64748b;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+    
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0.5rem 0;
+      font-size: 0.95rem;
+    }
+    
+    .legend-color {
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    
+    .section-title h2 {
+      font-weight: 700;
+      font-size: 2.5rem;
+      color: #0f172a;
+      margin-bottom: 1rem;
+    }
+    
+    .section-title p {
+      color: #64748b;
+      font-size: 1.1rem;
+    }
+    
+    @media (max-width: 768px) {
+      .hero-stats h1 {
+        font-size: 2rem;
+      }
+      
+      .stats-card {
+        padding: 1.5rem;
+      }
+      
+      .chart-container {
+        height: 250px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="stats-pattern" aria-hidden="true"></div>
+  
+  <div class="wrap">
+    <div class="container">
+      <div class="row justify-content-between">
+        <div class="col d-flex align-items-center">
+          <p class="mb-0 phone"><span class="mailus">Hotline:</span> <a href="#">0123 456 789</a> | <span class="mailus">Email:</span> <a href="#">support@roomy.com</a></p>
+        </div>
+        <div class="col d-flex justify-content-end">
+          <div class="social-media">
+            <p class="mb-0 d-flex">
+              <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook"><i class="sr-only">Facebook</i></span></a>
+              <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-envelope"><i class="sr-only">Email</i></span></a>
+              <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-phone"><i class="sr-only">Phone</i></span></a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">ROOMY<span>.VN</span></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="fa fa-bars"></span> Menu
+      </button>
+      <div class="collapse navbar-collapse" id="ftco-nav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"><a href="index.html" class="nav-link">Trang chủ</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link">Giới thiệu</a></li>
+          <li class="nav-item"><a href="services.html" class="nav-link">Dịch vụ</a></li>
+          <li class="nav-item"><a href="rooms.html" class="nav-link">Phòng trọ</a></li>
+          <li class="nav-item"><a href="blog.html" class="nav-link">Tin tức</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link">Liên hệ</a></li>
+          <li class="nav-item active"><a href="statistics.html" class="nav-link">Thống kê</a></li>
+          <li class="nav-item"><a href="login.html" class="nav-link" id="nav-login">Đăng nhập</a></li>
+          <li class="nav-item"><a href="register.html" class="nav-link" id="nav-register">Đăng ký</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero-stats">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h1 class="ftco-animate">Thống kê tìm trọ</h1>
+          <p class="ftco-animate">Dữ liệu và phân tích về xu hướng tìm phòng trọ của sinh viên</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ftco-section">
+    <div class="container">
+      <div class="stats-summary">
+        <div class="summary-item">
+          <div class="number">1,234</div>
+          <div class="label">Tổng lượt tìm kiếm</div>
+        </div>
+        <div class="summary-item">
+          <div class="number">856</div>
+          <div class="label">Phòng đã cho thuê</div>
+        </div>
+        <div class="summary-item">
+          <div class="number">378</div>
+          <div class="label">Phòng còn trống</div>
+        </div>
+        <div class="summary-item">
+          <div class="number">92%</div>
+          <div class="label">Tỷ lệ hài lòng</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ftco-section bg-light">
+    <div class="container">
+      <div class="section-title">
+        <h2>Phân tích chi tiết</h2>
+        <p>Thống kê đa chiều về nhu cầu tìm trọ của sinh viên</p>
+      </div>
+      
+      <div class="row">
+        <div class="col-lg-6 mb-4">
+          <div class="stats-card">
+            <h3><i class="fa fa-map-marker"></i> Phân bố theo khu vực</h3>
+            <div class="chart-container">
+              <canvas id="areaChart"></canvas>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: #f6d365;"></div>
+              <span>Quận 1: 28%</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: #6b48ff;"></div>
+              <span>Quận 2: 22%</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: #4b9cdb;"></div>
+              <span>Bình Thạnh: 20%</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: #ff6b9d;"></div>
+              <span>Thủ Đức: 18%</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: #42f5c5;"></div>
+              <span>Quận 3: 12%</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-6 mb-4">
+          <div class="stats-card">
+            <h3><i class="fa fa-home"></i> Phân bố theo loại phòng</h3>
+            <div class="chart-container">
+              <canvas id="typeChart"></canvas>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: #f6d365;"></div>
+              <span>Phòng trọ: 45%</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: #6b48ff;"></div>
+              <span>Ký túc xá: 25%</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: #4b9cdb;"></div>
+              <span>Chung cư mini: 20%</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: #ff6b9d;"></div>
+              <span>Nhà nguyên căn: 10%</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-6 mb-4">
+          <div class="stats-card">
+            <h3><i class="fa fa-money"></i> Phân bố theo giá thuê</h3>
+            <div class="chart-container">
+              <canvas id="priceChart"></canvas>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: #f6d365;"></div>
+              <span>Dưới 2 triệu: 35%</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: #6b48ff;"></div>
+              <span>2-3 triệu: 40%</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: #4b9cdb;"></div>
+              <span>3-4 triệu: 18%</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: #ff6b9d;"></div>
+              <span>Trên 4 triệu: 7%</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-6 mb-4">
+          <div class="stats-card">
+            <h3><i class="fa fa-clock-o"></i> Thời gian tìm kiếm</h3>
+            <div class="chart-container">
+              <canvas id="timeChart"></canvas>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: #f6d365;"></div>
+              <span>Sáng (6-12h): 25%</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: #6b48ff;"></div>
+              <span>Chiều (12-18h): 35%</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: #4b9cdb;"></div>
+              <span>Tối (18-22h): 30%</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color" style="background: #ff6b9d;"></div>
+              <span>Đêm (22-6h): 10%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <section class="contact-section bg-white">
+      <div class="container py-5">
+        <div class="row align-items-center">
+          <div class="col-md-5 contact-info">
+            <h3 class="fw-bold mb-3">Liên hệ với chúng tôi</h3>
+            <p class="text-muted mb-4">Chúng tôi luôn sẵn sàng hỗ trợ bạn</p>
+            <div class="">
+              <h6>Email</h6>
+              <p class="text-dark">Gửi email cho đội ngũ hỗ trợ</p>
+              <a href="mailto:hotro@nghiansan.vn" class="text-dark">hotro@nghiansan.vn</a>
+            </div>
+            <div class="">
+              <h6>Điện thoại</h6>
+              <p class="text-dark">Liên hệ trực tiếp qua điện thoại</p>
+              <a href="tel:0384762565" class="text-dark">0384 762 565</a>
+            </div>
+            <div>
+              <h6>Văn phòng</h6>
+              <p class="text-dark">Địa chỉ trụ sở chính tại thành phố Vinh, Nghệ An</p>
+              <a href="https://www.google.com/maps" target="_blank" class="text-dark">Xem chỉ đường →</a>
+            </div>
+          </div>
+          <div class="col-md-7 map mt-4 mt-md-0">
+            <iframe 
+              width="100%"
+              height="300px"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3780.1100166068913!2d105.69315971026425!3d18.659058464857125!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3139cddf0bf20f23%3A0x86154b56a284fa6d!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBWaW5o!5e0!3m2!1svi!2s!4v1762697230075!5m2!1svi!2s"
+              loading="lazy">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+  </footer>
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+  <script>
+    // Chart colors
+    const colors = {
+      gold: '#f6d365',
+      purple: '#6b48ff',
+      blue: '#4b9cdb',
+      pink: '#ff6b9d',
+      green: '#42f5c5',
+      orange: '#fda085'
+    };
+
+    // Chart configuration
+    const chartOptions = {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: false
+        },
+        tooltip: {
+          backgroundColor: 'rgba(15, 23, 42, 0.9)',
+          padding: 12,
+          titleFont: {
+            size: 14,
+            weight: 'bold'
+          },
+          bodyFont: {
+            size: 13
+          },
+          callbacks: {
+            label: function(context) {
+              let label = context.label || '';
+              if (label) {
+                label += ': ';
+              }
+              label += context.parsed + '%';
+              return label;
+            }
+          }
+        }
+      }
+    };
+
+    // Area Chart
+    const areaCtx = document.getElementById('areaChart').getContext('2d');
+    new Chart(areaCtx, {
+      type: 'doughnut',
+      data: {
+        labels: ['Quận 1', 'Quận 2', 'Bình Thạnh', 'Thủ Đức', 'Quận 3'],
+        datasets: [{
+          data: [28, 22, 20, 18, 12],
+          backgroundColor: [
+            colors.gold,
+            colors.purple,
+            colors.blue,
+            colors.pink,
+            colors.green
+          ],
+          borderWidth: 0,
+          hoverOffset: 8
+        }]
+      },
+      options: chartOptions
+    });
+
+    // Type Chart
+    const typeCtx = document.getElementById('typeChart').getContext('2d');
+    new Chart(typeCtx, {
+      type: 'doughnut',
+      data: {
+        labels: ['Phòng trọ', 'Ký túc xá', 'Chung cư mini', 'Nhà nguyên căn'],
+        datasets: [{
+          data: [45, 25, 20, 10],
+          backgroundColor: [
+            colors.gold,
+            colors.purple,
+            colors.blue,
+            colors.pink
+          ],
+          borderWidth: 0,
+          hoverOffset: 8
+        }]
+      },
+      options: chartOptions
+    });
+
+    // Price Chart
+    const priceCtx = document.getElementById('priceChart').getContext('2d');
+    new Chart(priceCtx, {
+      type: 'doughnut',
+      data: {
+        labels: ['Dưới 2 triệu', '2-3 triệu', '3-4 triệu', 'Trên 4 triệu'],
+        datasets: [{
+          data: [35, 40, 18, 7],
+          backgroundColor: [
+            colors.gold,
+            colors.purple,
+            colors.blue,
+            colors.pink
+          ],
+          borderWidth: 0,
+          hoverOffset: 8
+        }]
+      },
+      options: chartOptions
+    });
+
+    // Time Chart
+    const timeCtx = document.getElementById('timeChart').getContext('2d');
+    new Chart(timeCtx, {
+      type: 'doughnut',
+      data: {
+        labels: ['Sáng (6-12h)', 'Chiều (12-18h)', 'Tối (18-22h)', 'Đêm (22-6h)'],
+        datasets: [{
+          data: [25, 35, 30, 10],
+          backgroundColor: [
+            colors.gold,
+            colors.purple,
+            colors.blue,
+            colors.pink
+          ],
+          borderWidth: 0,
+          hoverOffset: 8
+        }]
+      },
+      options: chartOptions
+    });
+  </script>
+</body>
+</html>
+
